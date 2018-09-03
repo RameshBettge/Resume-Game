@@ -5,8 +5,10 @@ using UnityEngine;
 public class Turntable : MonoBehaviour
 {
     public string characterName = "Name";
-    [SerializeField]
-    bool locked = false;
+    public bool locked = false;
+
+    public Color bgColor;
+    Color lockedColor = Color.grey;
 
     Material[] mats;
 
@@ -23,6 +25,8 @@ public class Turntable : MonoBehaviour
 
         if (locked)
         {
+            bgColor = lockedColor;
+
             SetFade(1f);
 
             GameObject spritePrefab = Resources.Load("Lock") as GameObject;

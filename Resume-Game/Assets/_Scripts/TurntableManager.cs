@@ -7,6 +7,13 @@ public class TurntableManager : MonoBehaviour
 {
     [SerializeField]
     Text characterNameField;
+    [SerializeField]
+    GameObject selectButton;
+    [SerializeField]
+    GameObject LockedButton;
+
+    [SerializeField]
+    Renderer background;
 
     [SerializeField]
     float defaultDistance = 2f;
@@ -19,27 +26,35 @@ public class TurntableManager : MonoBehaviour
     [Tooltip("How the tables turn when the selection changes.")]
     AnimationCurve selectionCurve;
 
-
     Turntable[] tables;
     float[] selectRotations;
 
     float rotationIncrement;
 
     bool inAction;
-    public int selected = 0;
-    public int nextSelection = 0;
+
+    [SerializeField]
+    int defaultSelected;
+    int selected = 0;
+    int nextSelection = 0;
 
     WaitForEndOfFrame wait = new WaitForEndOfFrame();
 
     void Start()
     {
         tables = GetComponentsInChildren<Turntable>();
+        selected = defaultSelected;
+        selected = Mathf.Clamp(selected, 0, tables.Length);
+        nextSelection = selected;
+
         CreateDefaultPosition();
 
-        characterNameField.text = tables[0].characterName;
-        tables[0].SetFade(0);
-        for (int i = 1; i < tables.Length; i++)
+        background.material.color = tables[selected].bgColor;
+        UpdateName();
+        tables[selected].SetFade(0);
+        for (int i = 0; i < tables.Length; i++)
         {
+            if(i == selected) { return; }
             tables[i].SetFade(1);
         }
 
@@ -54,11 +69,12 @@ public class TurntableManager : MonoBehaviour
         {
             tables[i].transform.localPosition = Vector3.forward * defaultDistance;
             tables[i].transform.RotateAround(
-                transform.position, Vector3.up, rotationIncrement * i
+                transform.position, Vector3.up, -rotationIncrement * i
                 );
         }
+        transform.eulerAngles = Vector3.up * rotationIncrement * selected;
 
-        tables[0].transform.localPosition = tables[0].transform.localPosition.SetMagnitude(selectedDistance);
+        tables[selected].transform.localPosition = tables[selected].transform.localPosition.SetMagnitude(selectedDistance);
     }
 
     private void Update()
@@ -87,7 +103,7 @@ public class TurntableManager : MonoBehaviour
 
     void UpdateSelection(int dir)
     {
-        nextSelection -= dir;
+        nextSelection += dir;
         if (nextSelection == tables.Length) { nextSelection = 0; }
         else if(nextSelection < 0) { nextSelection = tables.Length - 1; }
     }
@@ -96,7 +112,7 @@ public class TurntableManager : MonoBehaviour
     {
         inAction = true;
 
-        characterNameField.text = tables[nextSelection].characterName;
+        UpdateName();
 
         Vector3 startRot = transform.eulerAngles;
 
@@ -119,6 +135,9 @@ public class TurntableManager : MonoBehaviour
             tables[selected].SetFade(adjustedPercentage);
             tables[nextSelection].SetFade(1 - adjustedPercentage);
 
+            //Set background color
+            background.material.color = Color.Lerp(tables[selected].bgColor, tables[nextSelection].bgColor, adjustedPercentage);
+
             timer += Time.deltaTime;
             yield return wait;
         }
@@ -127,7 +146,26 @@ public class TurntableManager : MonoBehaviour
         tables[selected].SetFade(1f);
         tables[nextSelection].SetFade(0f);
 
+
+        background.material.color = tables[nextSelection].bgColor;
+
+
         selected = nextSelection;
         inAction = false;
+    }
+
+    void UpdateName()
+    {
+        characterNameField.text = tables[nextSelection].characterName;
+
+        if (tables[nextSelection].locked)
+        {
+            selectButton.SetActive(false);
+            LockedButton.SetActive(true);
+            return;
+        }
+
+        selectButton.SetActive(true);
+        LockedButton.SetActive(false);
     }
 }
