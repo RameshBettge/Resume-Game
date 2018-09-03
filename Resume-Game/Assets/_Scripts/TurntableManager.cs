@@ -1,10 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Utilities;
 
 public class TurntableManager : MonoBehaviour
 {
+    [SerializeField]
+    Text characterNameField;
+
     [SerializeField]
     float defaultDistance = 2f;
     [SerializeField]
@@ -32,6 +35,14 @@ public class TurntableManager : MonoBehaviour
     {
         tables = GetComponentsInChildren<Turntable>();
         CreateDefaultPosition();
+
+        characterNameField.text = tables[0].characterName;
+        tables[0].SetFade(0);
+        for (int i = 1; i < tables.Length; i++)
+        {
+            tables[i].SetFade(1);
+        }
+
     }
 
     void CreateDefaultPosition()
@@ -85,6 +96,8 @@ public class TurntableManager : MonoBehaviour
     {
         inAction = true;
 
+        characterNameField.text = tables[nextSelection].characterName;
+
         Vector3 startRot = transform.eulerAngles;
 
         float timer = 0f;
@@ -102,10 +115,17 @@ public class TurntableManager : MonoBehaviour
             tables[nextSelection].transform.localPosition = tables[nextSelection].transform.localPosition.SetMagnitude(
                 Mathf.Lerp(selectedDistance, defaultDistance, 1 - adjustedPercentage));
 
+            //Control fade
+            tables[selected].SetFade(adjustedPercentage);
+            tables[nextSelection].SetFade(1 - adjustedPercentage);
+
             timer += Time.deltaTime;
             yield return wait;
         }
         transform.eulerAngles = startRot + (Vector3.up * rotationIncrement * dir);
+
+        tables[selected].SetFade(1f);
+        tables[nextSelection].SetFade(0f);
 
         selected = nextSelection;
         inAction = false;
