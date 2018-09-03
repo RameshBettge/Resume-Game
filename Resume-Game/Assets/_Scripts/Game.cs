@@ -44,6 +44,7 @@ public class Game : Singleton<Game>
     private void Start()
     {
         inspectionCanvasGroup.alpha = 0f;
+        inspectionCanvasGroup.gameObject.SetActive(false);
 
         tManager = TurntableManager.Instance;
         Color c = selectedView.color;
@@ -111,6 +112,9 @@ public class Game : Singleton<Game>
 
             yield return wait;
         }
+
+        selectionCanvasGroup.gameObject.SetActive(false);
+        inspectionCanvasGroup.gameObject.SetActive(true);
 
         //Fade in the GameObjects necessary for Inspection.
         timer = 0f;
