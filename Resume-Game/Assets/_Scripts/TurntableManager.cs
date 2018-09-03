@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class TurntableManager : MonoBehaviour
 {
@@ -22,8 +23,8 @@ public class TurntableManager : MonoBehaviour
     float rotationIncrement;
 
     bool inAction;
-    int selected = 0;
-    int nextSelection = 0;
+    public int selected = 0;
+    public int nextSelection = 0;
 
     WaitForEndOfFrame wait = new WaitForEndOfFrame();
 
@@ -45,6 +46,8 @@ public class TurntableManager : MonoBehaviour
                 transform.position, Vector3.up, rotationIncrement * i
                 );
         }
+
+        tables[0].transform.localPosition = tables[0].transform.localPosition.SetMagnitude(selectedDistance);
     }
 
     private void Update()
@@ -62,13 +65,20 @@ public class TurntableManager : MonoBehaviour
 
     public void StartTransition(bool clockwise)
     {
-        int dir = clockwise ? 1 : -1;
-
-
         if (!inAction)
         {
+            int dir = clockwise ? 1 : -1;
+            UpdateSelection(dir);
+
             StartCoroutine(ChangeSelection(dir));
         }
+    }
+
+    void UpdateSelection(int dir)
+    {
+        nextSelection -= dir;
+        if (nextSelection == tables.Length) { nextSelection = 0; }
+        else if(nextSelection < 0) { nextSelection = tables.Length - 1; }
     }
 
     IEnumerator ChangeSelection(int dir)
@@ -81,15 +91,23 @@ public class TurntableManager : MonoBehaviour
         float percentage = 0f;
         while (percentage < 1f)
         {
+            //Rotate all children by rotating Manager
             percentage = timer / selectDelay;
             float adjustedPercentage = selectionCurve.Evaluate(percentage);
             transform.eulerAngles = startRot + (Vector3.up * rotationIncrement * adjustedPercentage * dir);
+
+            //Move selected Character forward
+            tables[selected].transform.localPosition = tables[selected].transform.localPosition.SetMagnitude(
+                Mathf.Lerp(selectedDistance, defaultDistance, adjustedPercentage));
+            tables[nextSelection].transform.localPosition = tables[nextSelection].transform.localPosition.SetMagnitude(
+                Mathf.Lerp(selectedDistance, defaultDistance, 1 - adjustedPercentage));
 
             timer += Time.deltaTime;
             yield return wait;
         }
         transform.eulerAngles = startRot + (Vector3.up * rotationIncrement * dir);
 
+        selected = nextSelection;
         inAction = false;
     }
 }
