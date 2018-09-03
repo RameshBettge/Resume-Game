@@ -3,10 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utilities;
 
-public class TurntableManager : MonoBehaviour
+public class TurntableManager : Singleton<TurntableManager>
 {
     [SerializeField]
     Text characterNameField;
+
     [SerializeField]
     GameObject selectButton;
     [SerializeField]
@@ -27,15 +28,18 @@ public class TurntableManager : MonoBehaviour
     AnimationCurve selectionCurve;
 
     Turntable[] tables;
+    public Turntable[] Tables { get { return tables; } }
     float[] selectRotations;
 
     float rotationIncrement;
 
     bool inAction;
+    public bool InAction { get { return inAction; } }
 
     [SerializeField]
     int defaultSelected;
     int selected = 0;
+    public int Selected { get { return selected; } }
     int nextSelection = 0;
 
     WaitForEndOfFrame wait = new WaitForEndOfFrame();
@@ -43,6 +47,7 @@ public class TurntableManager : MonoBehaviour
     void Start()
     {
         tables = GetComponentsInChildren<Turntable>();
+
         selected = defaultSelected;
         selected = Mathf.Clamp(selected, 0, tables.Length);
         nextSelection = selected;
@@ -79,6 +84,8 @@ public class TurntableManager : MonoBehaviour
 
     private void Update()
     {
+        if(Game.Instance.GameState != State.Selection) { return; }
+
         float h = Input.GetAxisRaw("Horizontal");
         if (h > 0)
         {
@@ -113,6 +120,7 @@ public class TurntableManager : MonoBehaviour
         inAction = true;
 
         UpdateName();
+
 
         Vector3 startRot = transform.eulerAngles;
 
