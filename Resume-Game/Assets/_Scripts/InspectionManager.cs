@@ -13,8 +13,6 @@ public class InspectionManager : MonoBehaviour
 
     WaitForEndOfFrame wait = new WaitForEndOfFrame();
 
-    bool acitveElement = false;
-
     Transform cameras;
     Vector3 camDefaultPos;
     Quaternion camDefaultRot;
@@ -27,24 +25,25 @@ public class InspectionManager : MonoBehaviour
         camDefaultPos = cameras.position;
         camDefaultRot = cameras.rotation;
 
-        currentGroup = transform.GetChild(0).GetComponent<CanvasGroup>();
-        currentGroup.alpha = 1f;
-
         DisableInactiveUI();
         SetManagerReferences();
     }
 
     void DisableInactiveUI()
     {
-        CanvasGroup[] groups = GetComponentsInChildren<CanvasGroup>();
+        CanvasGroup[] groups = gameObject.GetComponentsInChildren<CanvasGroup>(true);
+
         for (int i = 0; i < groups.Length; i++)
         {
-            if (groups[i].gameObject == gameObject) { continue; }
-            else if (!acitveElement)
+            if (groups[i].gameObject == this.gameObject) { continue; }
+            else if (currentGroup == null)
             {
-                acitveElement = true;
+                currentGroup = groups[i];
+                groups[i].gameObject.SetActive(true);
+                groups[i].alpha = 1f;
                 continue;
             }
+
             groups[i].alpha = 0f;
             groups[i].gameObject.SetActive(false);
             SetButtons(groups[i].gameObject, false);
@@ -123,21 +122,17 @@ public class InspectionManager : MonoBehaviour
         }
     }
 
-    //IEnumerator Blend(GameObject current, GameObject target, float duration)
     IEnumerator Blend(TransitionHelper tH, bool revert = false)
     {
-        Debug.Log("target: " + tH.target.gameObject.name);
-        Debug.Log("current: " + currentGroup.gameObject.name);
-
-        tH.target.SetActive(true);
-        CanvasGroup targetGroup = tH.target.GetComponent<CanvasGroup>();
+        tH.target.gameObject.SetActive(true);
+        CanvasGroup targetGroup = tH.target;
         if (revert)
         {
             targetGroup = tH.lastGroup;
         }
 
         SetButtons(currentGroup.gameObject, false);
-        SetButtons(tH.target, false);
+        SetButtons(tH.target.gameObject, false);
 
         float timer = 0f;
         float percentage = 0f;
@@ -169,13 +164,13 @@ public class InspectionManager : MonoBehaviour
         float timer = 0f;
         float percentage = 0f;
 
-        tH.target.SetActive(true);
+        tH.target.gameObject.SetActive(true);
 
-        CanvasGroup targetGroup = tH.target.GetComponent<CanvasGroup>();
+        CanvasGroup targetGroup = tH.target;
         targetGroup.alpha = 1f;
         RectTransform target = tH.target.GetComponent<RectTransform>();
         SetButtons(currentGroup.gameObject, false);
-        SetButtons(tH.target, false);
+        SetButtons(tH.target.gameObject, false);
 
         Vector3 startOffset = Vector3.right * Screen.width * dir;
 
@@ -199,10 +194,7 @@ public class InspectionManager : MonoBehaviour
 
             float smoothPercentage = smoothTransition.Evaluate(percentage);
 
-
-
             percentage = timer / tH.duration;
-
 
             target.localPosition = startOffset * (1 - smoothPercentage);
 
@@ -218,7 +210,6 @@ public class InspectionManager : MonoBehaviour
             currentGroup = tH.lastGroup;
         }
         SetButtons(currentGroup.gameObject, true);
-
     }
 
     IEnumerator SetCameraTransform(TransitionHelper tH, bool revert = false)
@@ -269,7 +260,7 @@ public class InspectionManager : MonoBehaviour
 
     public void SetButtons(GameObject canvas, bool active)
     {
-        Button[] buttons = canvas.GetComponentsInChildren<Button>();
+        Button[] buttons = canvas.GetComponentsInChildren<Button>(true);
         for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].enabled = active;
