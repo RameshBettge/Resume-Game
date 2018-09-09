@@ -30,7 +30,6 @@ public class Game : Singleton<Game>
     [Tooltip("How far the character moves to the side when inspected")]
     float cameraSideOffset = -2f;
 
-
     public State GameState = State.Selection;
 
     WaitForEndOfFrame wait;
@@ -53,6 +52,14 @@ public class Game : Singleton<Game>
 
         cameraDefaultPosition = cameraParent.position;
         cameraSidePosition = cameraDefaultPosition + Vector3.right * cameraSideOffset;
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Submit"))
+        {
+            SelectCharacter();
+        }
     }
 
     public void SelectCharacter()
