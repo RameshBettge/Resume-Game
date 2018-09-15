@@ -169,8 +169,8 @@ public class InspectionManager : MonoBehaviour
         CanvasGroup targetGroup = tH.target;
         targetGroup.alpha = 1f;
         RectTransform target = tH.target.GetComponent<RectTransform>();
-        SetButtons(currentGroup.gameObject, false);
-        SetButtons(tH.target.gameObject, false);
+        //SetButtons(currentGroup.gameObject, false);
+        //SetButtons(tH.target.gameObject, false);
 
         Vector3 startOffset = Vector3.right * Screen.width * dir;
 
@@ -263,7 +263,7 @@ public class InspectionManager : MonoBehaviour
         Button[] buttons = canvas.GetComponentsInChildren<Button>(true);
         for (int i = 0; i < buttons.Length; i++)
         {
-            buttons[i].enabled = active;
+            buttons[i].interactable = active;
         }
     }
 }
