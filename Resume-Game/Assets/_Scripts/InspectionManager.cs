@@ -173,7 +173,8 @@ public class InspectionManager : MonoBehaviour
         //SetButtons(tH.target.gameObject, false);
 
         Vector3 startOffset = Vector3.right * Screen.width * dir;
-
+        print(Screen.width);
+        print(target.localPosition);
         while (percentage < 1f)
         {
             if (revert)
