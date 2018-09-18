@@ -44,8 +44,7 @@ public struct Date
             o += " of ";
         }
 
-        o += month.ToString() + " ";
-        o += year;
+        o += month.ToString() + "\n" + year;
 
         if (year.ToString().Length < 4 || month.ToString().Length < 1)
         {
