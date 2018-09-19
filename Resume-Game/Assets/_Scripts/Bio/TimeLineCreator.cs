@@ -8,9 +8,13 @@ using System;
 public class TimeLineCreator : MonoBehaviour
 {
     [SerializeField]
+    BioInfo bioInfo;
+
+    [SerializeField]
     GameObject dateField;
     [SerializeField]
     GameObject buttonPrefab;
+
 
     [SerializeField]
     Color startColor = Color.white;
@@ -30,8 +34,8 @@ public class TimeLineCreator : MonoBehaviour
     Vector2 timeLineSize;
 
     float verticalOffset = 40f;
-    float endOffsetAddition = 30f;
     int verticalSwitch = 1;
+    float triangleOffset = 30f;
 
     Dictionary<int, string> monthLookup = new Dictionary<int, string>();
 
@@ -52,6 +56,7 @@ public class TimeLineCreator : MonoBehaviour
             VisualizePhase(phases[i], i);
             verticalSwitch = -verticalSwitch;
         }
+
     }
 
     private void VisualizePhase(Phase p, int idx)
@@ -66,8 +71,8 @@ public class TimeLineCreator : MonoBehaviour
             endDate = scope.end;
         }
 
-        SetField(p.start, startPos, verticalOffset, 1, p.title + ": StartDate", startColor);
-        SetField(endDate, endPos, verticalOffset + endOffsetAddition, -1, p.title + ": EndDate", endColor);
+        SetField(p.start, startPos,  1, p.title + ": StartDate", startColor);
+        SetField(endDate, endPos,  -1, p.title + ": EndDate", endColor);
 
         SetButton(startPos, endPos, idx, p);
     }
@@ -76,7 +81,7 @@ public class TimeLineCreator : MonoBehaviour
     {
         GameObject b = Instantiate(buttonPrefab, trans);
         b.name = p.title + "-Button";
-        float range = endPos - startPos; //Is also the range
+        float range = endPos - startPos;
         float pos = startPos + (range * 0.5f);
         float xPosition = (timeLineSize.x * pos) - (timeLineSize.x * 0.5f);
         RectTransform t = b.GetComponent<RectTransform>();
@@ -87,9 +92,11 @@ public class TimeLineCreator : MonoBehaviour
         Image img = t.GetComponentInChildren<Image>();
         img.color = p.color;
 
+        Button button = b.GetComponentInChildren<Button>();
+        button.onClick.AddListener(delegate { bioInfo.ChangeInfo(idx); });
     }
 
-    void SetField(Date d, float pos, float offset, int dir, string name, Color c)
+    void SetField(Date d, float pos, int dir, string name, Color c)
     {
         GameObject field = Instantiate(dateField);
         field.name = name;
@@ -97,12 +104,25 @@ public class TimeLineCreator : MonoBehaviour
         RectTransform t = field.GetComponent<RectTransform>();
 
         float xPosition = (timeLineSize.x * pos) - (timeLineSize.x * 0.5f);
-        t.localPosition = new Vector3(xPosition, (timeLineSize.y * 0.5f + offset) * dir, 0f);
+        t.localPosition = new Vector3(xPosition, (timeLineSize.y * 0.5f + verticalOffset) * dir, 0f);
 
         Text text = field.GetComponentInChildren<Text>();
         text.text = d.GetString();
         text.color = c;
-        //field.GetComponentInChildren<Image>().color = c;
+
+        RectTransform triangle = t.GetChild(0).GetComponent<RectTransform>();
+        triangle.localPosition = Vector3.up * triangleOffset * -dir;
+
+        Image triImg = field.GetComponentInChildren<Image>();
+        if (dir > 0)
+        {
+            triangle.eulerAngles = new Vector3(0f, 0f, 180f);
+            triImg.color = startColor;
+        }
+        else
+        {
+            triImg.color = endColor;
+        }
     }
 
 
