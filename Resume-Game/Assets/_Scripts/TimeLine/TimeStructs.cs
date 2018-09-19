@@ -64,6 +64,7 @@ public enum Month
 public struct Phase
 {
     public string title;
+    public Color color;
 
     public Date start;
     public bool inProgress;
