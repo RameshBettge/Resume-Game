@@ -107,7 +107,6 @@ public class InspectionManager : MonoBehaviour
                 StartCoroutine(Slide(tH, -1, true));
                 break;
             case TransType.FromRight:
-                print("revert slide");
                 StartCoroutine(Slide(tH, 1, true));
                 break;
             case TransType.Immediate:
@@ -144,13 +143,24 @@ public class InspectionManager : MonoBehaviour
 
             float smoothPercentage = smoothTransition.Evaluate(percentage);
 
-            currentGroup.alpha = 1 - smoothPercentage;
-            targetGroup.alpha = smoothPercentage;
+            if (revert)
+            {
+                currentGroup.alpha = 1 - smoothPercentage;
+            }
+            else
+            {
+                targetGroup.alpha = smoothPercentage;
+            }
+
 
             timer += Time.deltaTime;
             yield return wait;
         }
-        currentGroup.alpha = 0f;
+
+        if (revert)
+        {
+            currentGroup.alpha = 0f;
+        }
         targetGroup.alpha = 1f;
 
         currentGroup.gameObject.SetActive(false);
@@ -169,28 +179,35 @@ public class InspectionManager : MonoBehaviour
         CanvasGroup targetGroup = tH.target;
         targetGroup.alpha = 1f;
         RectTransform target = tH.target.GetComponent<RectTransform>();
-        //SetButtons(currentGroup.gameObject, false);
-        //SetButtons(tH.target.gameObject, false);
+        SetButtons(currentGroup.gameObject, false);
+        SetButtons(tH.target.gameObject, false);
 
         Vector3 startOffset = Vector3.right * Screen.width * dir;
-        print(Screen.width);
-        print(target.localPosition);
+
         while (percentage < 1f)
         {
             if (revert)
             {
+
                 if (percentage > 0.5f)
                 {
                     float alphaPercentage = (percentage - 0.5f) * 2;
                     float smoothAlpha = smoothTransition.Evaluate(alphaPercentage);
-                    tH.lastGroup.alpha = smoothAlpha;
-                }
-                percentage = 1 - percentage;
 
+                    if (lastHelpers.Count == 0) //if transitioning back to main
+                    {
+                        tH.lastGroup.alpha = smoothAlpha;
+                    }
+                }
+
+                percentage = 1 - percentage;
             }
             else
             {
-                currentGroup.alpha = Mathf.Clamp01(1 - (percentage * 3f));
+                if (lastHelpers.Count == 1) //if transitioning from main
+                {
+                    currentGroup.alpha = Mathf.Clamp01(1 - (percentage * 3f));
+                }
             }
 
             float smoothPercentage = smoothTransition.Evaluate(percentage);
