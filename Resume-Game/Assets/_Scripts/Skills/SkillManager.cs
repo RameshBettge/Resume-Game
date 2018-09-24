@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class SkillManager : MonoBehaviour
 {
     [SerializeField]
+    GameObject tutorial;
+
+    [SerializeField]
     GameObject skillTemplate;
 
     [SerializeField]
@@ -42,9 +45,23 @@ public class SkillManager : MonoBehaviour
         FillList(hardSkills, hardSkillPanel);
         FillList(softSkills, softSkillPanel);
 
-        softSkillPanel.gameObject.SetActive(false);
 
         SetButtons(hardButtons, true);
+    }
+
+    void OnEnable()
+    {
+        if(currentSkillDisplay != null)
+        {
+            currentSkillDisplay.SetActive(false);
+        }
+
+        ////Display first Skill
+        //DisplaySkill(0);
+
+        //OR show tutorial
+        tutorial.SetActive(true);
+        currentSkillDisplay = tutorial;
     }
 
     void SetInfos(Transform p, Skill[] skills)
@@ -113,6 +130,7 @@ public class SkillManager : MonoBehaviour
 
     void DisplaySkill(int idx)
     {
+
         if (currentSkillDisplay != null)
         {
             currentSkillDisplay.SetActive(false);
@@ -120,12 +138,10 @@ public class SkillManager : MonoBehaviour
 
         if (softActive)
         {
-            print("idx " + idx + " softSkills.Length " + softSkills.Length);
             currentSkillDisplay = softSkills[idx].gameObject;
         }
         else
         {
-            print("idx " + idx + " hardSkills.Length " + hardSkills.Length);
             currentSkillDisplay = hardSkills[idx].gameObject;
         }
 
@@ -159,13 +175,6 @@ public class SkillManager : MonoBehaviour
                 ApplySkillValues(child, skill, found);
             }
         }
-    }
-
-
-    public void DisableAllButtons()
-    {
-        SetButtons(hardButtons, false);
-        SetButtons(softButtons, false);
     }
 
     void SetButtons(List<Button> buttons, bool b)
