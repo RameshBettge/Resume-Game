@@ -16,8 +16,10 @@ public class SkillManager : MonoBehaviour
     [SerializeField]
     Transform softSkillPanel;
 
-    public Skill[] hardSkills;
-    public Skill[] softSkills;
+    //Transform skillPanelParent;
+
+    Skill[] hardSkills;
+    Skill[] softSkills;
 
     Transform hardParent;
     Transform softParent;
@@ -28,8 +30,20 @@ public class SkillManager : MonoBehaviour
     List<Button> hardButtons;
     List<Button> softButtons;
 
+    [Header("Soft/Hard Switch")]
+    [SerializeField]
+    float switchTime = 1f;
+    [SerializeField]
+    float switchDistance = 10f;
+    [SerializeField]
+    AnimationCurve switchCurve;
+
+    WaitForEndOfFrame wait = new WaitForEndOfFrame();
+
     void Start()
     {
+        //skillPanelParent = hardSkillPanel.parent;
+
         hardButtons = new List<Button>();
         softButtons = new List<Button>();
 
@@ -44,7 +58,6 @@ public class SkillManager : MonoBehaviour
 
         FillList(hardSkills, hardSkillPanel);
         FillList(softSkills, softSkillPanel);
-
 
         SetButtons(hardButtons, true);
     }
@@ -187,7 +200,58 @@ public class SkillManager : MonoBehaviour
 
     public void SwitchSkillCategory()
     {
-
+        StartCoroutine(SwitchRegister());
     }
 
+    IEnumerator SwitchRegister()
+    {
+        RectTransform target = null;
+        List<Button> targetButtons = null;
+
+        if (softActive)
+        {
+            SetButtons(softButtons, false);
+            targetButtons = hardButtons;
+            target = softSkillPanel.GetComponent<RectTransform>();
+        }
+        else
+        {
+            SetButtons(hardButtons, false);
+            targetButtons = softButtons;
+            target = softSkillPanel.GetComponent<RectTransform>();
+        }
+
+        Vector3 startPos = target.position;
+
+        float timer = 0f;
+        float percentage = 0f;
+
+        target.SetSiblingIndex(0);
+
+        while (percentage < 0.5f)
+        {
+            percentage = timer / switchTime;
+            float adjustedPercentage = switchCurve.Evaluate(percentage * 2f);
+
+            target.position = startPos + (Vector3.right * switchDistance * adjustedPercentage);
+
+
+            timer += Time.deltaTime;
+            yield return wait;
+        }
+
+        while (percentage < 1f)
+        {
+            percentage = timer / switchTime;
+            float adjustedPercentage = switchCurve.Evaluate((percentage - 0.5f) * 2f);
+
+            target.position = startPos + (Vector3.right * switchDistance * (1 - adjustedPercentage));
+
+
+            timer += Time.deltaTime;
+            yield return wait;
+
+        }
+
+    }
 }
