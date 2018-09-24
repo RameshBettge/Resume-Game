@@ -13,8 +13,11 @@ public class CustomLayout : MonoBehaviour
     [SerializeField] Vector2 padding;
     [SerializeField] Vector2 spacing;
 
+    [Tooltip("Makes this script run every frame.")]
+    [SerializeField] bool inRuntime;
 
-    public Vector2 actualCellSize;
+
+    Vector2 actualCellSize;
     RectTransform[] elements;
 
     RectTransform trans;
@@ -22,7 +25,22 @@ public class CustomLayout : MonoBehaviour
     int rows;
     int columns;
 
-    void Awake()
+    private void Awake()
+    {
+        SetLayout();
+
+        if (!inRuntime)
+        {
+            enabled = false;
+        }
+    }
+
+    void Update()
+    {
+        SetLayout();
+    }
+
+    void SetLayout()
     {
         GetValues();
         CheckDifference();
@@ -52,12 +70,17 @@ public class CustomLayout : MonoBehaviour
         if (layoutAlignment == LayoutAlignment.Horizontal)
         {
             resizePercentage = GetDifference(padding.x, spacing.x, preferedCellSize.x, gridSize.x);
+            Resize(resizePercentage);
+            resizePercentage = GetSecondaryDifference(padding.y, actualCellSize.y, gridSize.y);
         }
         else
         {
             resizePercentage = GetDifference(padding.y, spacing.y, preferedCellSize.y, gridSize.y);
+            Resize(resizePercentage);
+            resizePercentage = GetSecondaryDifference(padding.x, actualCellSize.x, gridSize.x);
         }
 
+        //Apply secondary resize
         Resize(resizePercentage);
     }
 
@@ -69,14 +92,28 @@ public class CustomLayout : MonoBehaviour
 
         Vector2 difference = Vector2.zero;
         difference.x = totalSize - gridSize;
-        print("difference.x " + difference.x);
         if (difference.x > 0f)
         {
             float individualDifference = difference.x / trans.childCount;
             float resizePercentage = individualDifference / preferedCellSize;
 
             return 1 - resizePercentage;
+        }
+        else
+        {
+            return 1f;
+        }
+    }
 
+    float GetSecondaryDifference(float padding, float actual, float gridSize)
+    {
+        float total = (padding * 2f) + actual;
+        float difference = total - gridSize;
+
+        if(difference > 0f)
+        {
+            float resizePercentage = difference / actual;
+            return 1 - resizePercentage;
         }
         else
         {
@@ -86,8 +123,8 @@ public class CustomLayout : MonoBehaviour
 
     void Resize(float resizePercentage)
     {
-        actualCellSize.x = preferedCellSize.x * (resizePercentage);
-        actualCellSize.y = preferedCellSize.y * (resizePercentage);
+        actualCellSize.x = actualCellSize.x * (resizePercentage);
+        actualCellSize.y = actualCellSize.y * (resizePercentage);
     }
 
     private void ScaleElements()
@@ -106,7 +143,7 @@ public class CustomLayout : MonoBehaviour
             }
             else
             {
-                float yPos = -(gridSize.y * 0.5f) + (actualCellSize.y * (i + 0.5f)) + (spacing.y * i) + padding.y;
+                float yPos = (gridSize.y * 0.5f) - (actualCellSize.y * (i + 0.5f)) - (spacing.y * i) - padding.y;
 
                 elements[i].localPosition = new Vector3(0f, yPos, 0f);
             }
