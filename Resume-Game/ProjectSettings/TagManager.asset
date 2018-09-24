@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Infos
   - Title
+  - List
+  - ExpFill
+  - PassionFill
   layers:
   - Default
   - TransparentFX
