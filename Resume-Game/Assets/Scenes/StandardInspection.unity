@@ -4619,7 +4619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b0aa8b58a5ce54899c30491b57572d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layoutAlignment: 0
+  layoutType: 0
+  alignment: 1
   preferedCellSize: {x: 200, y: 200}
   padding: {x: 0, y: 0}
   spacing: {x: 10, y: 0}

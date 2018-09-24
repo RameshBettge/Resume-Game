@@ -14,16 +14,16 @@ public class InspectionManager : MonoBehaviour
     WaitForEndOfFrame wait = new WaitForEndOfFrame();
 
     Transform cameras;
-    Vector3 camDefaultPos;
-    Quaternion camDefaultRot;
+    //Vector3 camDefaultPos;
+    //Quaternion camDefaultRot;
 
     Stack<TransitionHelper> lastHelpers = new Stack<TransitionHelper>();
 
     void Awake()
     {
         cameras = Camera.main.transform.parent;
-        camDefaultPos = cameras.position;
-        camDefaultRot = cameras.rotation;
+        //camDefaultPos = cameras.position;
+        //camDefaultRot = cameras.rotation;
 
         DisableInactiveUI();
         SetManagerReferences();

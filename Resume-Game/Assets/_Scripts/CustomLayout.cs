@@ -8,13 +8,16 @@ using UnityEngine.UI;
 /// </summary>
 public class CustomLayout : MonoBehaviour
 {
-    [SerializeField] LayoutAlignment layoutAlignment;
+    [SerializeField] LayoutType layoutType;
+    [SerializeField] Alignment alignment;
     [SerializeField] Vector2 preferedCellSize;
     [SerializeField] Vector2 padding;
     [SerializeField] Vector2 spacing;
 
+    [Header("For editing")]
     [Tooltip("Makes this script run every frame.")]
-    [SerializeField] bool inRuntime;
+    [SerializeField]
+    bool inRuntime;
 
 
     Vector2 actualCellSize;
@@ -24,19 +27,19 @@ public class CustomLayout : MonoBehaviour
     Vector2 gridSize;
     int rows;
     int columns;
+    float offset;
 
     private void Awake()
     {
         SetLayout();
-
-        if (!inRuntime)
-        {
-            enabled = false;
-        }
     }
 
     void Update()
     {
+        if (!inRuntime)
+        {
+            enabled = false;
+        }
         SetLayout();
     }
 
@@ -62,26 +65,28 @@ public class CustomLayout : MonoBehaviour
         elements = new RectTransform[trans.childCount];
 
         actualCellSize = preferedCellSize;
+        offset = 0f;
     }
 
     void CheckDifference()
     {
         float resizePercentage = 0f;
-        if (layoutAlignment == LayoutAlignment.Horizontal)
+        if (layoutType == LayoutType.Horizontal)
         {
-            resizePercentage = GetDifference(padding.x, spacing.x, preferedCellSize.x, gridSize.x);
-            Resize(resizePercentage);
             resizePercentage = GetSecondaryDifference(padding.y, actualCellSize.y, gridSize.y);
+            Resize(resizePercentage);
+            resizePercentage = GetDifference(padding.x, spacing.x, actualCellSize.x, gridSize.x);
+            Resize(resizePercentage);
+
         }
         else
         {
-            resizePercentage = GetDifference(padding.y, spacing.y, preferedCellSize.y, gridSize.y);
-            Resize(resizePercentage);
             resizePercentage = GetSecondaryDifference(padding.x, actualCellSize.x, gridSize.x);
+            Resize(resizePercentage);
+            resizePercentage = GetDifference(padding.y, spacing.y, actualCellSize.y, gridSize.y);
+            Resize(resizePercentage);
         }
 
-        //Apply secondary resize
-        Resize(resizePercentage);
     }
 
     float GetDifference(float padding, float spacing, float preferedCellSize, float gridSize)
@@ -90,17 +95,25 @@ public class CustomLayout : MonoBehaviour
             + (preferedCellSize * trans.childCount);
 
 
-        Vector2 difference = Vector2.zero;
-        difference.x = totalSize - gridSize;
-        if (difference.x > 0f)
+        float difference = totalSize - gridSize;
+        if (difference > 0f)
         {
-            float individualDifference = difference.x / trans.childCount;
+            float individualDifference = difference / trans.childCount;
             float resizePercentage = individualDifference / preferedCellSize;
 
             return 1 - resizePercentage;
         }
         else
         {
+            if(alignment == Alignment.End)
+            {
+            offset = -difference;
+            }
+            else if(alignment == Alignment.Center)
+            {
+                offset = -difference * 0.5f;
+            }
+
             return 1f;
         }
     }
@@ -110,7 +123,7 @@ public class CustomLayout : MonoBehaviour
         float total = (padding * 2f) + actual;
         float difference = total - gridSize;
 
-        if(difference > 0f)
+        if (difference > 0f)
         {
             float resizePercentage = difference / actual;
             return 1 - resizePercentage;
@@ -136,19 +149,21 @@ public class CustomLayout : MonoBehaviour
             // xPos =  Left end of transform   + (picture + spacing)             * (i + 0.5f)  + padding 
             //0.5f is added to i so that the first picture starts at the correct place
 
-            if (layoutAlignment == LayoutAlignment.Horizontal)
+            if (layoutType == LayoutType.Horizontal)
             {
                 float xPos = -(gridSize.x * 0.5f) + (actualCellSize.x * (i + 0.5f)) + (spacing.x * i) + padding.x;
+                xPos += offset;
                 elements[i].localPosition = new Vector3(xPos, 0f, 0f);
             }
             else
             {
                 float yPos = (gridSize.y * 0.5f) - (actualCellSize.y * (i + 0.5f)) - (spacing.y * i) - padding.y;
-
+                yPos -= offset;
                 elements[i].localPosition = new Vector3(0f, yPos, 0f);
             }
         }
     }
 }
 
-public enum LayoutAlignment { Horizontal, Vertical }
+public enum LayoutType { Horizontal, Vertical }
+public enum Alignment { Start, Center, End }

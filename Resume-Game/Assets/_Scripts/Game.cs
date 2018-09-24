@@ -136,7 +136,7 @@ public class Game : Singleton<Game>
             inspectionCanvasGroup.alpha = adjustedPercentage;
 
             //Move camera the second 50% of the way to the side.
-            float cameraPercentage = camMoveCurve.Evaluate((percentage / 2f) + 0.5f);
+            //float cameraPercentage = camMoveCurve.Evaluate((percentage / 2f) + 0.5f);
 
             yield return wait;
         }

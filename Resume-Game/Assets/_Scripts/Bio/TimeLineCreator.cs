@@ -24,7 +24,7 @@ public class TimeLineCreator : MonoBehaviour
 
     public Phase scope;
     public Phase[] phases;
-    Text t;
+    //Text t;
 
     int minPos;
     int maxPos;
@@ -45,7 +45,7 @@ public class TimeLineCreator : MonoBehaviour
         trans = GetComponent<RectTransform>();
         timeLineSize = trans.sizeDelta;
 
-        t = GetComponentInChildren<Text>();
+        //t = GetComponentInChildren<Text>();
 
         minPos = scope.start.Position;
         maxPos = scope.end.Position;
