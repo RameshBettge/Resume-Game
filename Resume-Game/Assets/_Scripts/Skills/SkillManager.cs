@@ -16,8 +16,6 @@ public class SkillManager : MonoBehaviour
     [SerializeField]
     Transform softSkillPanel;
 
-    //Transform skillPanelParent;
-
     Skill[] hardSkills;
     Skill[] softSkills;
 
@@ -29,6 +27,9 @@ public class SkillManager : MonoBehaviour
 
     List<Button> hardButtons;
     List<Button> softButtons;
+
+    Button toHardButton;
+    Button toSoftButton;
 
     [Header("Soft/Hard Switch")]
     [SerializeField]
@@ -42,10 +43,11 @@ public class SkillManager : MonoBehaviour
 
     void Start()
     {
-        //skillPanelParent = hardSkillPanel.parent;
-
         hardButtons = new List<Button>();
         softButtons = new List<Button>();
+
+        toHardButton = softSkillPanel.GetComponentInChildren<Button>();
+        toSoftButton = hardSkillPanel.GetComponentInChildren<Button>();
 
         hardParent = transform.GetChild(0);
         softParent = transform.GetChild(1);
@@ -60,11 +62,12 @@ public class SkillManager : MonoBehaviour
         FillList(softSkills, softSkillPanel);
 
         SetButtons(hardButtons, true);
+        toSoftButton.interactable = true;
     }
 
     void OnEnable()
     {
-        if(currentSkillDisplay != null)
+        if (currentSkillDisplay != null)
         {
             currentSkillDisplay.SetActive(false);
         }
@@ -194,7 +197,7 @@ public class SkillManager : MonoBehaviour
     {
         foreach (Button button in buttons)
         {
-            button.interactable = false;
+            button.interactable = b;
         }
     }
 
@@ -210,23 +213,30 @@ public class SkillManager : MonoBehaviour
 
         if (softActive)
         {
-            SetButtons(softButtons, false);
             targetButtons = hardButtons;
-            target = softSkillPanel.GetComponent<RectTransform>();
+            targetButtons.Add(toHardButton);
+
+            target = hardSkillPanel.GetComponent<RectTransform>();
         }
         else
         {
-            SetButtons(hardButtons, false);
             targetButtons = softButtons;
+            targetButtons.Add(toSoftButton);
+    
             target = softSkillPanel.GetComponent<RectTransform>();
         }
+
+        toSoftButton.interactable = false;
+        toHardButton.interactable = false;
+
+        SetButtons(hardButtons, false);
+        SetButtons(softButtons, false);
 
         Vector3 startPos = target.position;
 
         float timer = 0f;
         float percentage = 0f;
 
-        target.SetSiblingIndex(0);
 
         while (percentage < 0.5f)
         {
@@ -239,6 +249,8 @@ public class SkillManager : MonoBehaviour
             timer += Time.deltaTime;
             yield return wait;
         }
+
+        target.SetSiblingIndex(1);
 
         while (percentage < 1f)
         {
@@ -253,5 +265,7 @@ public class SkillManager : MonoBehaviour
 
         }
 
+        SetButtons(targetButtons, true);
+        softActive = !softActive;
     }
 }
