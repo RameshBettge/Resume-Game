@@ -37,7 +37,7 @@ public class TimeLineCreator : MonoBehaviour
     int verticalSwitch = 1;
     float triangleOffset = 30f;
 
-    Dictionary<int, string> monthLookup = new Dictionary<int, string>();
+    //Dictionary<int, string> monthLookup = new Dictionary<int, string>();
 
 
     void Start()

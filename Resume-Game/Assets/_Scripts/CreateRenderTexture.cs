@@ -1,12 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateRenderTexture : MonoBehaviour
 {
+    [SerializeField]
+    RawImage renderView;
+
+    Camera cam;
     private void Awake()
     {
-        Camera cam = GetComponent<Camera>();
-        cam.targetTexture = new RenderTexture(Screen.width, Screen.height, -1);
+        cam = GetComponent<Camera>();
+        Create();
+    }
+
+    public void Create()
+    {
+        RenderTexture newTex = new RenderTexture(Screen.width, Screen.height, -1);
+        cam.targetTexture = newTex;
+        renderView.texture = newTex;
     }
 }

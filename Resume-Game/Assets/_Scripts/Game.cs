@@ -79,8 +79,6 @@ public class Game : Singleton<Game>
 
         MarkAsSelected(tManager.Tables[tManager.Selected].transform);
 
-        Debug.Log("Selected: " + tManager.Tables[tManager.Selected].characterName);
-
         StartCoroutine(SwitchToInspection());
     }
 
