@@ -1,21 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
     public string title;
     public float expPercentage;
-    public float passionPercentage;
+
+    [HideInInspector]
+    public bool hard;
 
 
-    private void Awake()
+    protected float CheckPercentage(float p)
     {
-        expPercentage = CheckPercentage(expPercentage);
-        passionPercentage = CheckPercentage(passionPercentage);
-    }
-
-    float CheckPercentage(float p)
-    {
-        if (expPercentage > 1f || expPercentage < 0f)
+        if (p > 1f || p < 0f)
         {
             Debug.LogWarning("Skill percentage was set to " + p + ". It has been clamped.");
             return Mathf.Clamp01(p);

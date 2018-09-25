@@ -758,12 +758,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 170493304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3082d19eb913562459e67289bfa0e07b, type: 3}
+  m_Script: {fileID: 11500000, guid: c16e14ea9bafe344091acf6602cca852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Unity C#
-  expPercentage: 0.8
-  passionPercentage: 0.9
+  title: Modelling
+  expPercentage: 0.4
+  hard: 0
+  passionPercentage: 0.45
 --- !u!222 &170493307
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1274,12 +1275,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 241389582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3082d19eb913562459e67289bfa0e07b, type: 3}
+  m_Script: {fileID: 11500000, guid: c16e14ea9bafe344091acf6602cca852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Unreal Engine
-  expPercentage: 0.1
-  passionPercentage: 0.15
+  title: Expressive Dancing
+  expPercentage: 0.25
+  hard: 0
+  passionPercentage: 1
 --- !u!222 &241389585
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2319,12 +2321,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 464503000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3082d19eb913562459e67289bfa0e07b, type: 3}
+  m_Script: {fileID: 11500000, guid: c16e14ea9bafe344091acf6602cca852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Modelling
-  expPercentage: 0.5
-  passionPercentage: 0.5
+  title: VR Programming
+  expPercentage: 0.15
+  hard: 0
+  passionPercentage: 9.5
 --- !u!1 &526581703
 GameObject:
   m_ObjectHideFlags: 0
@@ -4641,12 +4644,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1261794282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3082d19eb913562459e67289bfa0e07b, type: 3}
+  m_Script: {fileID: 11500000, guid: b2bf0a58eed6d544cb5cb6739cf15e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Motivation
-  expPercentage: 1
-  passionPercentage: 1
+  title: Communication
+  expPercentage: 0.04
+  hard: 0
 --- !u!222 &1261794285
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5639,9 +5642,30 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114110718524459436, guid: 19e73f0c1c5b173468c44aaea48cd364, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 19e73f0c1c5b173468c44aaea48cd364, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1444686883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1198991517806408, guid: 19e73f0c1c5b173468c44aaea48cd364,
+    type: 2}
+  m_PrefabInternal: {fileID: 1444686882}
+--- !u!114 &1444686884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1444686883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c16e14ea9bafe344091acf6602cca852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Unity C#
+  expPercentage: 0.8
+  hard: 0
+  passionPercentage: 0.8
 --- !u!1 &1452374001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5693,7 +5717,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorial: {fileID: 1393875987}
-  skillTemplate: {fileID: 1776697811086994, guid: 51096f79cfe628042abc216c62d458af,
+  hardTemplate: {fileID: 1778160482444256, guid: 83bdf2d09bedf474f8770ac046d910a5,
+    type: 2}
+  softTemplate: {fileID: 1843037367102728, guid: 35248c3f07a10f64d9f21c01cc8e1d3b,
     type: 2}
   hardSkillPanel: {fileID: 1896639912}
   softSkillPanel: {fileID: 1625693325}
@@ -6314,12 +6340,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1545222646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3082d19eb913562459e67289bfa0e07b, type: 3}
+  m_Script: {fileID: 11500000, guid: b2bf0a58eed6d544cb5cb6739cf15e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   title: Attractiveness
-  expPercentage: 0.8
-  passionPercentage: 0.5
+  expPercentage: 1
+  hard: 0
 --- !u!1 &1572438271
 GameObject:
   m_ObjectHideFlags: 0

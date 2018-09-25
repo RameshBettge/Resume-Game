@@ -9,7 +9,9 @@ public class SkillManager : MonoBehaviour
     GameObject tutorial;
 
     [SerializeField]
-    GameObject skillTemplate;
+    GameObject hardTemplate;
+    [SerializeField]
+    GameObject softTemplate;
 
     [SerializeField]
     Transform hardSkillPanel;
@@ -55,6 +57,9 @@ public class SkillManager : MonoBehaviour
         hardSkills = hardParent.GetComponentsInChildren<Skill>(true);
         softSkills = softParent.GetComponentsInChildren<Skill>(true);
 
+        if(hardSkills.Length == 0) { Debug.LogError("No hardSkills detected."); }
+        if(softSkills.Length == 0) { Debug.LogError("No softSkills detected."); }
+
         SetInfos(hardParent, hardSkills);
         SetInfos(softParent, softSkills);
 
@@ -82,7 +87,7 @@ public class SkillManager : MonoBehaviour
 
     void SetInfos(Transform p, Skill[] skills)
     {
-        for (int i = 0; i < p.childCount; i++)
+        for (int i = 0; i < skills.Length; i++)
         {
             GameObject child = p.GetChild(i).gameObject;
             child.SetActive(false);
@@ -122,9 +127,13 @@ public class SkillManager : MonoBehaviour
 
         for (int i = 0; i < skills.Length; i++)
         {
-            Transform t = Instantiate(skillTemplate, skillList).transform;
+            GameObject template;
+            if (skills[i].hard) { template = hardTemplate; }
+            else { template = softTemplate; }
 
-            ApplySkillValues(t, skills[i], 0);
+            Transform t = Instantiate(template, skillList).transform;
+
+            ApplySkillValues(t, skills[i]);
 
             Button b = t.GetComponentInChildren<Button>();
 
@@ -165,7 +174,7 @@ public class SkillManager : MonoBehaviour
     }
 
     //Optimization: Function doesn't return if all three components have been found.
-    void ApplySkillValues(Transform parent, Skill skill, int found)
+    void ApplySkillValues(Transform parent, Skill skill)
     {
         for (int i = 0; i < parent.childCount; i++)
         {
@@ -173,22 +182,20 @@ public class SkillManager : MonoBehaviour
             if (child.CompareTag("ExpFill"))
             {
                 child.GetComponent<Image>().fillAmount = skill.expPercentage;
-                found++;
             }
-            else if (child.CompareTag("PassionFill"))
+            else if (skill.hard && child.CompareTag("PassionFill"))
             {
-                child.GetComponent<Image>().fillAmount = skill.passionPercentage;
-                found++;
+                HardSkill hS = (HardSkill)skill;
+                child.GetComponent<Image>().fillAmount = hS.passionPercentage;
             }
             else if (child.CompareTag("Title"))
             {
                 parent.name = skill.title;
                 child.GetComponent<Text>().text = skill.title;
-                found++;
             }
             else
             {
-                ApplySkillValues(child, skill, found);
+                ApplySkillValues(child, skill);
             }
         }
     }
