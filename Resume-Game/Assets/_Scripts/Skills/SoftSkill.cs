@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoftSkill : Skill {
-
+public class SoftSkill : Skill
+{
 
     private void Awake()
     {
-        hard = false;
+        expPercentage = CheckPercentage(expPercentage);
+    }
+
+    public override bool IsHard()
+    {
+        return false;
     }
 }

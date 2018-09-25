@@ -723,7 +723,7 @@ GameObject:
   - component: {fileID: 170493307}
   - component: {fileID: 170493306}
   m_Layer: 5
-  m_Name: Demo Skill (3)
+  m_Name: OldDemoSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,7 +743,7 @@ RectTransform:
   - {fileID: 1692430738}
   - {fileID: 1880603838}
   m_Father: {fileID: 599240599}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -763,7 +763,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Modelling
   expPercentage: 0.4
-  hard: 0
   passionPercentage: 0.45
 --- !u!222 &170493307
 CanvasRenderer:
@@ -1240,7 +1239,7 @@ GameObject:
   - component: {fileID: 241389585}
   - component: {fileID: 241389584}
   m_Layer: 5
-  m_Name: Demo Skill (4)
+  m_Name: OldDemoSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1260,7 +1259,7 @@ RectTransform:
   - {fileID: 1847727569}
   - {fileID: 975529660}
   m_Father: {fileID: 599240599}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1280,7 +1279,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Expressive Dancing
   expPercentage: 0.25
-  hard: 0
   passionPercentage: 1
 --- !u!222 &241389585
 CanvasRenderer:
@@ -2279,7 +2277,7 @@ GameObject:
   - component: {fileID: 464503002}
   - component: {fileID: 464503003}
   m_Layer: 5
-  m_Name: Demo Skill (2)
+  m_Name: OldDemoSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2299,7 +2297,7 @@ RectTransform:
   - {fileID: 225099434}
   - {fileID: 420969456}
   m_Father: {fileID: 599240599}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2326,8 +2324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: VR Programming
   expPercentage: 0.15
-  hard: 0
-  passionPercentage: 9.5
+  passionPercentage: 0.95
 --- !u!1 &526581703
 GameObject:
   m_ObjectHideFlags: 0
@@ -2904,7 +2901,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1585815951}
   - {fileID: 464503001}
   - {fileID: 170493305}
   - {fileID: 241389583}
@@ -4609,7 +4605,7 @@ GameObject:
   - component: {fileID: 1261794285}
   - component: {fileID: 1261794284}
   m_Layer: 5
-  m_Name: Demo Skill
+  m_Name: OldDemoSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4649,7 +4645,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Communication
   expPercentage: 0.04
-  hard: 0
 --- !u!222 &1261794285
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5545,127 +5540,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!1001 &1444686882
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 599240599}
-    m_Modifications:
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-        type: 2}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114110718524459436, guid: 19e73f0c1c5b173468c44aaea48cd364, type: 2}
-  m_SourcePrefab: {fileID: 100100000, guid: 19e73f0c1c5b173468c44aaea48cd364, type: 2}
-  m_IsPrefabAsset: 0
---- !u!1 &1444686883 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1198991517806408, guid: 19e73f0c1c5b173468c44aaea48cd364,
-    type: 2}
-  m_PrefabInternal: {fileID: 1444686882}
---- !u!114 &1444686884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1444686883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c16e14ea9bafe344091acf6602cca852, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: Unity C#
-  expPercentage: 0.8
-  hard: 0
-  passionPercentage: 0.8
 --- !u!1 &1452374001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5724,7 +5598,7 @@ MonoBehaviour:
   hardSkillPanel: {fileID: 1896639912}
   softSkillPanel: {fileID: 1625693325}
   switchTime: 1
-  switchDistance: 20
+  switchOvershoot: 0.1
   switchCurve:
     serializedVersion: 2
     m_Curve:
@@ -6298,7 +6172,7 @@ GameObject:
   - component: {fileID: 1545222648}
   - component: {fileID: 1545222649}
   m_Layer: 5
-  m_Name: Demo Skill
+  m_Name: OldDemoSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6345,7 +6219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Attractiveness
   expPercentage: 1
-  hard: 0
 --- !u!1 &1572438271
 GameObject:
   m_ObjectHideFlags: 0
@@ -6499,11 +6372,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 8, y: -179.99998, z: 0}
---- !u!224 &1585815951 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224619918707952240, guid: 19e73f0c1c5b173468c44aaea48cd364,
-    type: 2}
-  m_PrefabInternal: {fileID: 1444686882}
 --- !u!1 &1625693324
 GameObject:
   m_ObjectHideFlags: 0

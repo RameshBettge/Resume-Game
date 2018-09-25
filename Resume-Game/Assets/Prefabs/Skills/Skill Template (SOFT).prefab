@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 222325157415505970}
   - component: {fileID: 114826677176281242}
   m_Layer: 5
-  m_Name: 'Lv.:'
+  m_Name: 'Skill Lv.:'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

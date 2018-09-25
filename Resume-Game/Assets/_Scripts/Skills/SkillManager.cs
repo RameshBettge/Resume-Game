@@ -143,7 +143,7 @@ public class SkillManager : MonoBehaviour
         for (int i = 0; i < skills.Length; i++)
         {
             GameObject template;
-            if (skills[i].hard) { template = hardTemplate; }
+            if (skills[i].IsHard()) { template = hardTemplate; }
             else { template = softTemplate; }
 
             Transform t = Instantiate(template, skillList).transform;
@@ -198,7 +198,7 @@ public class SkillManager : MonoBehaviour
             {
                 child.GetComponent<Image>().fillAmount = skill.expPercentage;
             }
-            else if (skill.hard && child.CompareTag("PassionFill"))
+            else if (skill.IsHard() && child.CompareTag("PassionFill"))
             {
                 HardSkill hS = (HardSkill)skill;
                 child.GetComponent<Image>().fillAmount = hS.passionPercentage;

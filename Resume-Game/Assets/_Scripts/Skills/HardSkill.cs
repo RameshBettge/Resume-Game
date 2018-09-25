@@ -4,11 +4,14 @@ public class HardSkill : Skill
 {
     public float passionPercentage;
 
-
     private void Awake()
     {
-        hard = true;
         expPercentage = CheckPercentage(expPercentage);
         passionPercentage = CheckPercentage(passionPercentage);
+    }
+
+    public override bool IsHard()
+    {
+        return true;
     }
 }
