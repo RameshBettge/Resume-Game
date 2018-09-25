@@ -213,6 +213,7 @@ public class SkillManager : MonoBehaviour
 
         if (softActive)
         {
+
             targetButtons = hardButtons;
             targetButtons.Add(toHardButton);
 
@@ -220,9 +221,10 @@ public class SkillManager : MonoBehaviour
         }
         else
         {
+
             targetButtons = softButtons;
             targetButtons.Add(toSoftButton);
-    
+
             target = softSkillPanel.GetComponent<RectTransform>();
         }
 
@@ -237,7 +239,7 @@ public class SkillManager : MonoBehaviour
         float timer = 0f;
         float percentage = 0f;
 
-
+        //Move to the right
         while (percentage < 0.5f)
         {
             percentage = timer / switchTime;
@@ -250,14 +252,18 @@ public class SkillManager : MonoBehaviour
             yield return wait;
         }
 
+        //Put target to the front
         target.SetSiblingIndex(1);
 
+        //Move back
         while (percentage < 1f)
         {
             percentage = timer / switchTime;
-            float adjustedPercentage = switchCurve.Evaluate((percentage - 0.5f) * 2f);
+            //Map percentage to 01 and evaluate the curve from back to front.
+            float adjustedPercentage = switchCurve.Evaluate(1 - ((percentage - 0.5f) * 2f));
 
-            target.position = startPos + (Vector3.right * switchDistance * (1 - adjustedPercentage));
+
+            target.position = startPos + (Vector3.right * switchDistance * adjustedPercentage);
 
 
             timer += Time.deltaTime;
@@ -265,7 +271,23 @@ public class SkillManager : MonoBehaviour
 
         }
 
-        SetButtons(targetButtons, true);
         softActive = !softActive;
+
+        if (softActive)
+        {
+            softParent.gameObject.SetActive(true);
+            hardParent.gameObject.SetActive(false);
+        }
+        else
+        {
+            softParent.gameObject.SetActive(false);
+            hardParent.gameObject.SetActive(true);
+        }
+
+        currentSkillDisplay.SetActive(false);
+        DisplaySkill(0);
+
+
+        SetButtons(targetButtons, true);
     }
 }

@@ -281,6 +281,10 @@ public class InspectionManager : MonoBehaviour
         Button[] buttons = canvas.GetComponentsInChildren<Button>(true);
         for (int i = 0; i < buttons.Length; i++)
         {
+            if (buttons[i].CompareTag("Manual"))
+            {
+                continue;
+            }
             buttons[i].interactable = active;
         }
     }

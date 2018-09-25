@@ -113,51 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &6476340
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6476341}
-  - component: {fileID: 6476342}
-  m_Layer: 5
-  m_Name: BioPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &6476341
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 6476340}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 618809345}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &6476342
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 6476340}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &15205560
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,9 +214,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -28.7}
-  m_SizeDelta: {x: 0, y: -57.4}
+  m_AnchorMax: {x: 1, y: 0.92297214}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &29912567
 MonoBehaviour:
@@ -326,10 +281,10 @@ RectTransform:
   m_Father: {fileID: 1625693325}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.026262006, y: -0.000024814492}
-  m_AnchorMax: {x: 0.973738, y: 0.9065358}
-  m_AnchoredPosition: {x: 0, y: 4.799988}
-  m_SizeDelta: {x: 0, y: -9.7}
+  m_AnchorMin: {x: 0.026262006, y: 0.012924971}
+  m_AnchorMax: {x: 0.973738, y: 0.9064687}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0.00000047683716}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &62676592
 MonoBehaviour:
@@ -806,9 +761,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3082d19eb913562459e67289bfa0e07b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: VR Programming
-  expPercentage: 0.1
-  passionPercentage: 1
+  title: Unity C#
+  expPercentage: 0.8
+  passionPercentage: 0.9
 --- !u!222 &170493307
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1070,7 +1025,7 @@ RectTransform:
   m_AnchorMin: {x: 0.12829998, y: 0.19666624}
   m_AnchorMax: {x: 0.74217623, y: 0.7148765}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0.0000019073486}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &224464286
 MonoBehaviour:
@@ -1181,15 +1136,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Skill Description and Details.
-
-    A lot of Space for writing stuff.
-
-
-    Even more Space in here. All done with a single Text Component.
-
-
-    Obviosly this is just a demo, but you can get even more space in here.'
+  m_Text: "Different Description.\nAgain, just for testing. \nI actually have literally
+    no idea why I am actually bothering to put text here."
 --- !u!222 &225099436
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1329,9 +1277,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3082d19eb913562459e67289bfa0e07b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: VR Programming
+  title: Unreal Engine
   expPercentage: 0.1
-  passionPercentage: 1
+  passionPercentage: 0.15
 --- !u!222 &241389585
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3143,7 +3091,6 @@ RectTransform:
   - {fileID: 1425700463}
   - {fileID: 1180045187}
   - {fileID: 772877785}
-  - {fileID: 6476341}
   - {fileID: 762972380}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -3530,7 +3477,7 @@ RectTransform:
   - {fileID: 2045305994}
   - {fileID: 1572438272}
   m_Father: {fileID: 618809345}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3835,7 +3782,7 @@ GameObject:
   - component: {fileID: 836801217}
   m_Layer: 5
   m_Name: SwitchButton
-  m_TagString: Untagged
+  m_TagString: Manual
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3854,10 +3801,10 @@ RectTransform:
   m_Father: {fileID: 1938155188}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.51762724, y: 0.9968921}
-  m_AnchorMax: {x: 0.99984664, y: 1.0816424}
-  m_AnchoredPosition: {x: -168.85004, y: 0}
-  m_SizeDelta: {x: 0, y: 0.000030517578}
+  m_AnchorMin: {x: -0.000000027804191, y: 0.9968921}
+  m_AnchorMax: {x: 0.48221937, y: 1.0816424}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &836801217
 MonoBehaviour:
@@ -3881,7 +3828,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3897,7 +3844,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 836801218}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1452374003}
+        m_MethodName: SwitchSkillCategory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &836801218
@@ -4088,7 +4046,7 @@ GameObject:
   - component: {fileID: 975229886}
   m_Layer: 5
   m_Name: SwitchButton
-  m_TagString: Untagged
+  m_TagString: Manual
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4107,10 +4065,10 @@ RectTransform:
   m_Father: {fileID: 29912566}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 84.4, y: 370.9}
-  m_SizeDelta: {x: 157.3, y: 58.29}
+  m_AnchorMin: {x: 0.51762724, y: 0.9968921}
+  m_AnchorMax: {x: 0.99984664, y: 1.0816424}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0.000030517578}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &975229886
 MonoBehaviour:
@@ -4134,7 +4092,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4150,7 +4108,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 975229887}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1452374003}
+        m_MethodName: SwitchSkillCategory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &975229887
@@ -4302,10 +4271,10 @@ RectTransform:
   m_Father: {fileID: 975229885}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.049151853, y: 0.9304754}
-  m_AnchorMax: {x: 0.31592068, y: 0.9741618}
-  m_AnchoredPosition: {x: 39.75, y: -28.943745}
-  m_SizeDelta: {x: 54.6, y: 27.66}
+  m_AnchorMin: {x: 0.12829998, y: 0.19666624}
+  m_AnchorMax: {x: 0.74217623, y: 0.7148765}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0.0000019073486}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075167213
 MonoBehaviour:
@@ -4859,10 +4828,10 @@ RectTransform:
   m_Father: {fileID: 1896639912}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.026262006, y: -0.000024814492}
-  m_AnchorMax: {x: 0.973738, y: 0.9065358}
-  m_AnchoredPosition: {x: 0, y: 4.799988}
-  m_SizeDelta: {x: 0, y: -9.7}
+  m_AnchorMin: {x: 0.026262006, y: 0.012924971}
+  m_AnchorMax: {x: 0.973738, y: 0.9064687}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0.00000047683716}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1265763965
 MonoBehaviour:
@@ -5728,8 +5697,32 @@ MonoBehaviour:
     type: 2}
   hardSkillPanel: {fileID: 1896639912}
   softSkillPanel: {fileID: 1625693325}
-  hardSkills: []
-  softSkills: []
+  switchTime: 1
+  switchDistance: 400
+  switchCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1452374004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6324,9 +6317,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3082d19eb913562459e67289bfa0e07b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Teamwork
+  title: Attractiveness
   expPercentage: 0.8
-  passionPercentage: 0.9
+  passionPercentage: 0.5
 --- !u!1 &1572438271
 GameObject:
   m_ObjectHideFlags: 0
@@ -6516,10 +6509,10 @@ RectTransform:
   m_Father: {fileID: 592942644}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.027213542, y: 0.03425926}
-  m_AnchorMax: {x: 0.28205732, y: 0.96574074}
-  m_AnchoredPosition: {x: 112.657936, y: 0}
-  m_SizeDelta: {x: 243.06999, y: 51.05896}
+  m_AnchorMin: {x: -0.0000000044195656, y: 0.000000016974399}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1625693326
 CanvasRenderer:
@@ -6733,15 +6726,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Skill Description and Details.
-
-    A lot of Space for writing stuff.
-
-
-    Even more Space in here. All done with a single Text Component.
-
-
-    Obviosly this is just a demo, but you can get even more space in here.'
+  m_Text: "Actually I am not bothering anymore.\n\nTHIS hkals\xF6dfn  jhapdshfioupnck\xF6asdfj\nSi
+    djka\xF6sdfhvckjpasd j pc awd jhi\xF6 sad j"
 --- !u!222 &1692430740
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7100,15 +7086,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Skill Description and Details.
-
-    A lot of Space for writing stuff.
-
-
-    Even more Space in here. All done with a single Text Component.
-
-
-    Obviosly this is just a demo, but you can get even more space in here.'
+  m_Text: '''DESCRIPTION'''
 --- !u!222 &1847727571
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7448,10 +7426,10 @@ RectTransform:
   m_Father: {fileID: 592942644}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.027213542, y: 0.03425926}
-  m_AnchorMax: {x: 0.28205732, y: 0.96574074}
-  m_AnchoredPosition: {x: 112.657936, y: 0}
-  m_SizeDelta: {x: 243.06999, y: 51.05896}
+  m_AnchorMin: {x: -0.0000000044195656, y: 0.000000016974399}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1896639914
 CanvasRenderer:
