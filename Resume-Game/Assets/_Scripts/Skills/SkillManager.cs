@@ -36,15 +36,19 @@ public class SkillManager : MonoBehaviour
     [Header("Soft/Hard Switch")]
     [SerializeField]
     float switchTime = 1f;
+    [Tooltip("How much the panels will overshoot. In percentage of panel width.")]
     [SerializeField]
-    float switchDistance = 10f;
+    float switchOvershoot = 0.1f;
     [SerializeField]
     AnimationCurve switchCurve;
 
+    float switchDistance;
     WaitForEndOfFrame wait = new WaitForEndOfFrame();
 
     void Start()
     {
+        GetSwitchDistance();
+
         hardButtons = new List<Button>();
         softButtons = new List<Button>();
 
@@ -57,8 +61,8 @@ public class SkillManager : MonoBehaviour
         hardSkills = hardParent.GetComponentsInChildren<Skill>(true);
         softSkills = softParent.GetComponentsInChildren<Skill>(true);
 
-        if(hardSkills.Length == 0) { Debug.LogError("No hardSkills detected."); }
-        if(softSkills.Length == 0) { Debug.LogError("No softSkills detected."); }
+        if (hardSkills.Length == 0) { Debug.LogError("No hardSkills detected."); }
+        if (softSkills.Length == 0) { Debug.LogError("No softSkills detected."); }
 
         SetInfos(hardParent, hardSkills);
         SetInfos(softParent, softSkills);
@@ -68,6 +72,17 @@ public class SkillManager : MonoBehaviour
 
         SetButtons(hardButtons, true);
         toSoftButton.interactable = true;
+    }
+
+    void GetSwitchDistance()
+    {
+        //Get The corners of the Panels to calculate their width
+        RectTransform rT = hardSkillPanel.GetComponent<RectTransform>();
+        Vector3[] corners = new Vector3[4];
+        rT.GetWorldCorners(corners);
+
+        //Add the width of the Panels to the switch distance
+        switchDistance = (corners[3].x - corners[1].x) * (1 + switchOvershoot);
     }
 
     void OnEnable()

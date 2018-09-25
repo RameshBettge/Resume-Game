@@ -5724,7 +5724,7 @@ MonoBehaviour:
   hardSkillPanel: {fileID: 1896639912}
   softSkillPanel: {fileID: 1625693325}
   switchTime: 1
-  switchDistance: 400
+  switchDistance: 20
   switchCurve:
     serializedVersion: 2
     m_Curve:
