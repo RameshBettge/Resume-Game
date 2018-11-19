@@ -289,8 +289,8 @@ Prefab:
       value: 'Ramesh loves VR! He wants to develop VR Games after graduating.
 
 
-        He worked on a VR Project at the VRBLN Hackathon #2 and currently works on
-        a local multiplayer with one VR player.'
+        He helped create a VR Project at the VRBLN Hackathon #2 and currently works
+        on a local multiplayer game with one PC-, and one VR-player.'
       objectReference: {fileID: 0}
     - target: {fileID: 114984866532849896, guid: 19e73f0c1c5b173468c44aaea48cd364,
         type: 2}
@@ -1361,17 +1361,9 @@ Prefab:
     - target: {fileID: 114123246493328570, guid: 19e73f0c1c5b173468c44aaea48cd364,
         type: 2}
       propertyPath: m_Text
-      value: 'Ramesh can programm simple shaders using CG. He is not yet good enough
-        with the language to feel comfortable with it.
-
-
-        However, he is confident that he will really enjoy creating shaders after
-        gaining more experience.
-
-
-
-
-'
+      value: "Ramesh can program simple shaders using CG. \n\nHe lacks the experience
+        needed to be really comfortable with the language though.\n\nOnce he improves,
+        he may really enjoy creating shaders.\n\n\n\n"
       objectReference: {fileID: 0}
     - target: {fileID: 1928120606714624, guid: 19e73f0c1c5b173468c44aaea48cd364, type: 2}
       propertyPath: m_IsActive
@@ -2259,7 +2251,7 @@ Prefab:
 
 
         He knows how to create models and unwraps. He is also familiar with the basics
-        of texturing, rigging and animation.'
+        of texturing, rigging, skinning and animation.'
       objectReference: {fileID: 0}
     - target: {fileID: 114984866532849896, guid: 19e73f0c1c5b173468c44aaea48cd364,
         type: 2}
@@ -4871,8 +4863,7 @@ Prefab:
       value: 'Unreal Engine is something which is not taught in Ramesh''s school.
 
 
-        He has learned the basics of the engine on his own, but still doesn''t feel
-        comfortable using it.
+        He has learned the basics of the engine on his own, but still needs to improve.
 
 
         He will learn more and be able to use it well eventually.'
@@ -5999,7 +5990,7 @@ Prefab:
       propertyPath: m_Text
       value: 'Programming with C# is Ramesh''s main skill.
 
-        He is very comfortable Unity3D, its components and syntax.
+        He is very comfortable with Unity3D, its components and syntax.
 
 
         Almost all of his projects were made in Unity.
@@ -7192,10 +7183,20 @@ Prefab:
     - target: {fileID: 114123246493328570, guid: 19e73f0c1c5b173468c44aaea48cd364,
         type: 2}
       propertyPath: m_Text
-      value: "A little while after starting a new game Ramesh always starts analizing
-        it. \n\nWhy is it fun, or why isn't it? What is the player supposed to feel
-        and does the music fit the mood?\n\nWhenever Ramesh programs a mechanic he
-        wonders which kind of gameplay could fit it."
+      value: 'What makes a game fun? Ramesh believes that one has to consider all
+        parts of a game, to answer this question.
+
+
+        Gameplay, art, animation, music, storytelling and much more are needed to
+        create one experience.
+
+
+        Ramesh has already started to learn about all of these aspects and tries to
+        get a solid understanding of all of them eventually.
+
+
+        Whenever Ramesh programs a mechanic, he wonders which kind of game it would
+        fit in.'
       objectReference: {fileID: 0}
     - target: {fileID: 114984866532849896, guid: 19e73f0c1c5b173468c44aaea48cd364,
         type: 2}
@@ -7357,7 +7358,11 @@ Prefab:
 
         He is a team player who can easily understand other''s points of view. Even
         when he has a strong opinion about something, he will never push it on someone
-        else.'
+        else.
+
+
+        On all four Game-Jams he visited, he successfully worked with at least one
+        person he just met.'
       objectReference: {fileID: 0}
     - target: {fileID: 1373813495254108, guid: 8735873e949b25948869b3cabf395f6c, type: 2}
       propertyPath: m_Name
