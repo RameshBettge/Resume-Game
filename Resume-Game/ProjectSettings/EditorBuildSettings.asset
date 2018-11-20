@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/RameshInspection.unity
+    guid: a6111342c8841c1419a042e481a35fe8
   m_configObjects: {}

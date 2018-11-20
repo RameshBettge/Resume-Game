@@ -31,21 +31,19 @@ public class TimeLineCreator : MonoBehaviour
     float range;
 
     RectTransform trans;
-    Vector2 timeLineSize;
+    public Vector2 timeLineSize;
 
     float verticalOffset = 40f;
     int verticalSwitch = 1;
     float triangleOffset = 30f;
+    float buttonHeightPercentage = 0.9f;
 
     //Dictionary<int, string> monthLookup = new Dictionary<int, string>();
 
-
-    void Start()
+    void OnEnable()
     {
         trans = GetComponent<RectTransform>();
-        timeLineSize = trans.sizeDelta;
-
-        //t = GetComponentInChildren<Text>();
+        timeLineSize = trans.rect.size;
 
         minPos = scope.start.Position;
         maxPos = scope.end.Position;
@@ -85,7 +83,13 @@ public class TimeLineCreator : MonoBehaviour
         float pos = startPos + (range * 0.5f);
         float xPosition = (timeLineSize.x * pos) - (timeLineSize.x * 0.5f);
         RectTransform t = b.GetComponent<RectTransform>();
-        t.sizeDelta = new Vector2(range * timeLineSize.x, trans.sizeDelta.y);
+        //t.sizeDelta = new Vector2(range * timeLineSize.x, trans.sizeDelta.y); //approach depended on anchors being set on one point.
+
+        //Set anchors and make the button fit this area.
+        t.anchorMin = new Vector2(startPos, -buttonHeightPercentage * 0.5f);
+        t.anchorMax = new Vector2(endPos, buttonHeightPercentage * 0.5f);
+        t.sizeDelta = Vector3.one;
+
         t.localPosition = Vector3.right * xPosition;
         Text text = t.GetComponentInChildren<Text>();
         text.text = p.title;
@@ -139,6 +143,14 @@ public class TimeLineCreator : MonoBehaviour
             Debug.LogError(d.GetString() + " (" + p.title + ") is out of min scope: " + scope.start.GetString());
         }
         return mappedPos;
+    }
+
+    private void OnDisable()
+    {
+        foreach (Transform t in trans)
+        {
+            Destroy(t.gameObject);
+        }
     }
 }
 

@@ -29,7 +29,7 @@ public class CustomLayout : MonoBehaviour
     int columns;
     float offset;
 
-    private void Awake()
+    private void OnEnable()
     {
         SetLayout();
     }
@@ -43,7 +43,7 @@ public class CustomLayout : MonoBehaviour
         SetLayout();
     }
 
-    void SetLayout()
+    public void SetLayout()
     {
         GetValues();
         CheckDifference();
@@ -60,7 +60,7 @@ public class CustomLayout : MonoBehaviour
             return;
         }
 
-        gridSize = trans.sizeDelta;
+        gridSize = trans.rect.size;
 
         elements = new RectTransform[trans.childCount];
 
