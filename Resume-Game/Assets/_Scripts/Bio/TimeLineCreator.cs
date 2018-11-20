@@ -37,7 +37,6 @@ public class TimeLineCreator : MonoBehaviour
     int verticalSwitch = 1;
     float triangleOffset = 30f;
     float buttonHeightPercentage = 0.9f;
-
     //Dictionary<int, string> monthLookup = new Dictionary<int, string>();
 
     void OnEnable()

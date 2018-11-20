@@ -42,7 +42,6 @@ public class SkillManager : MonoBehaviour
     [SerializeField]
     AnimationCurve switchCurve;
 
-    float switchDistance;
     WaitForEndOfFrame wait = new WaitForEndOfFrame();
 
     void Start()
@@ -74,7 +73,7 @@ public class SkillManager : MonoBehaviour
         toSoftButton.interactable = true;
     }
 
-    void GetSwitchDistance()
+    float GetSwitchDistance()
     {
         //Get The corners of the Panels to calculate their width
         RectTransform rT = hardSkillPanel.GetComponent<RectTransform>();
@@ -82,7 +81,8 @@ public class SkillManager : MonoBehaviour
         rT.GetWorldCorners(corners);
 
         //Add the width of the Panels to the switch distance
-        switchDistance = (corners[3].x - corners[1].x) * (1 + switchOvershoot);
+        float switchDistance = (corners[3].x - corners[1].x) * (1 + switchOvershoot);
+        return switchDistance;
     }
 
     void OnEnable()
@@ -260,7 +260,7 @@ public class SkillManager : MonoBehaviour
 
         float timer = 0f;
         float percentage = 0f;
-
+        float switchDistance = GetSwitchDistance();
         //Move to the right
         while (percentage < 0.5f)
         {
